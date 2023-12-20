@@ -9,3 +9,11 @@ body {
     background: #080808;
     color: #fff;
 }
+
+#header {
+    width: 100%;
+    height: 100vh;
+    background-image: url(/images/A\ portrait\ of\ an\ Asian\ person\ with\ no\ discernible\ facial\ features\ wearing\ glasses\ and\ a\ light\ grey\ shirt\ against\ a\ black\ background..png);
+    background-size: cover;
+    background-position: center;
+}
