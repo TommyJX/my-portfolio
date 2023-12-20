@@ -1,6 +1,5 @@
 const tablinks = document.getElementsByClassName("tab-links")
 const tabcontents = document.getElementsByClassName("tab-contents")
-let mybutton = document.getElementById("myBtn")
 
 function opentab(tabname) {
     for (tablink of tablinks) {
@@ -16,17 +15,27 @@ function opentab(tabname) {
     document.getElementById(tabname).classList.add("active-tab")
 }
 
+
+
 /*-----------scroll-----------*/
-window.onscroll = function () { scrollFunction() }
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block"
+let calcScrollValue = () => {
+    let scrollProgress = document.getElementById("progress");
+    let progressValue = document.getElementById("progress-value");
+    let pos = document.documentElement.scrollTop;
+    let calcHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+    let scrollValue = Math.round((pos * 100) / calcHeight);
+    if (pos > 100) {
+        scrollProgress.style.display = "grid";
     } else {
-        mybutton.style.display = "none"
+        scrollProgress.style.display = "none";
     }
-}
+    scrollProgress.addEventListener("click", () => {
+        document.documentElement.scrollTop = 0;
+    });
+    scrollProgress.style.background = `conic-gradient(#ff004f ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+};
 
-function topFunction() {
-    document.documentElement.scrollTop = 0
-}
+window.onscroll = calcScrollValue;
+window.onload = calcScrollValue;
