@@ -343,6 +343,10 @@ nav ul li a:hover::after {
     background-color: #006eff;
 }
 
+.btn.btn2:hover {
+    background-color: #006eff65;
+}
+
 .contact-right form {
     width: 100%;
 }
