@@ -15,7 +15,6 @@ function opentab(tabname) {
     document.getElementById(tabname).classList.add("active-tab")
 }
 
-
 /*-----------menu-----------*/
 const sidemenu = document.getElementById("sidemenu")
 
@@ -27,7 +26,16 @@ function closemenu() {
     sidemenu.style.right = "-200px"
 }
 
+/*-----------sendDataToGoogleSheets-----------*/
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzZdGzf27KGJeibLdwWU6HdpxRdRm9J1S457joV9IUVM5Mgd3yTyyNMNGadFxysImk1lA/exec'
+const form = document.forms['submit-to-google-sheet']
 
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+})
 
 /*-----------scroll-----------*/
 let calcScrollValue = () => {
