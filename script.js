@@ -29,11 +29,18 @@ function closemenu() {
 /*-----------sendDataToGoogleSheets-----------*/
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzZdGzf27KGJeibLdwWU6HdpxRdRm9J1S457joV9IUVM5Mgd3yTyyNMNGadFxysImk1lA/exec'
 const form = document.forms['submit-to-google-sheet']
+const msg = document.getElementById("msg")
 
 form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => console.log('Success!', response))
+        .then(response => {
+            msg.innerHTML = "Message sent successfully!"
+            setTimeout(function () {
+                msg.innerHTML = ""
+            }, 5000)
+            form.reset()
+        })
         .catch(error => console.error('Error!', error.message))
 })
 
@@ -54,7 +61,7 @@ let calcScrollValue = () => {
     scrollProgress.addEventListener("click", () => {
         document.documentElement.scrollTop = 0;
     });
-    scrollProgress.style.background = `conic-gradient(#ff004f ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+    scrollProgress.style.background = `conic-gradient(#006eff ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
 };
 
 window.onscroll = calcScrollValue;
